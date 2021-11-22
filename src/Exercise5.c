@@ -14,47 +14,25 @@ Ex:
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
-#include <stdbool.h>
 
-bool Ex5(char *str){
+
+void Ex5(char *str){
 	//Your codes here
-	 int k=strlen(str);
-	char buf[k];
-	int i=0;
-   while(*str)
-    {
-        if(*str == '(' || *str == '[' || *str == '{')
-        {
-            buf[i] = *str;
-            i++;
-        }
-        if(*str == ')')
-        {
-            if(buf[i - 1] == '(')
-                i--;
-            else
-                return false;
-        }
-        if(*str == ']')
-        {
-            if(buf[i - 1] == '[')
-                i--;
-            else
-                return false;
-        }
-        if(*str == '}')
-        {
-            if(buf[i - 1] == '{')
-                i--;
-            else
-                return false;
-        }
-        str++;
-    }
-    if(i == 0)
-        return true;
-    else
-        return false;
+	int len = strlen(str);
+
+	for (int i = len / 2 - 1, j = len / 2; i >= 0, j < len; i--, j++)
+	{
+		if ((str[i] == '{' && str[j] == '}') || (str[i] == '[' && str[j] == ']') || (str[i] == '(' && str[j] == ')'))
+		{
+			continue;
+		}
+		else
+		{
+			printf("Invalid!");
+			return;
+		}
+	}
+	printf("Valid!");
 }
 	
 
@@ -63,12 +41,7 @@ int main(int argc, char *argv[]) {
 	//testing variable, applying it to your algorithm for auto-evaluating
 	char *testcase = argv[1];
 
-	if(Ex5(testcase)==true)
-	{
-		printf("Valid");
-	}else
-	{
-	printf("Invalid");
-	}
+     Ex5(testcase);
+	
 	return 0;
 }
