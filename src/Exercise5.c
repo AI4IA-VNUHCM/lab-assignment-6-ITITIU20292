@@ -14,12 +14,12 @@ Ex:
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
+#include <stdbool.h>
 
-int Ex5(char *str){
+bool Ex5(char *str){
 	//Your codes here
-	int k;
+	 int k=strlen(str);
 	char buf[k];
-	 k=strlen(str);
 	int i=0;
    while(*str)
     {
@@ -33,28 +33,28 @@ int Ex5(char *str){
             if(buf[i - 1] == '(')
                 i--;
             else
-                return 0;
+                return false;
         }
         if(*str == ']')
         {
             if(buf[i - 1] == '[')
                 i--;
             else
-                return 0;
+                return false;
         }
         if(*str == '}')
         {
             if(buf[i - 1] == '{')
                 i--;
             else
-                return 0;
+                return false;
         }
         str++;
     }
     if(i == 0)
-        return 1;
+        return true;
     else
-        return 0;
+        return false;
 }
 	
 
@@ -63,7 +63,7 @@ int main(int argc, char *argv[]) {
 	//testing variable, applying it to your algorithm for auto-evaluating
 	char *testcase = argv[1];
 
-	if(Ex5(testcase)==1)
+	if(Ex5(testcase)==true)
 	{
 		printf("Valid");
 	}else
