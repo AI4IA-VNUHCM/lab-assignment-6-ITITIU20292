@@ -14,7 +14,33 @@ Ex:
 
 void Ex2(int n, char *str[]){
 	//Your codes here
-	
+	int sort[n];
+
+	for(int i = 0; i < n; i++)
+		sort[i] = i;
+
+	for(int i = 0; i < n; i++)
+		for(int j = i + 1; j < n; j++)
+		{
+			int k = 0;
+
+			while(str[sort[i]][k] != '\0')
+			{
+				if(str[sort[i]][k] > str[sort[j]][k])
+				{
+					int temp = sort[i];
+					sort[i] = sort[j];
+					sort[j] = temp;
+					break;
+				}else if(str[sort[i]][k] == str[sort[j]][k]) 	
+					k++;
+				else
+					break;
+			}
+		}
+
+	for(int i = 0; i < n; i++)
+		printf("%s ", str[sort[i]]);
 }
 
 int main(int argc, char *argv[]) {
@@ -27,6 +53,5 @@ int main(int argc, char *argv[]) {
 	}
 	
 	Ex2(argc, testcase);
-	
 	return 0;
 }
