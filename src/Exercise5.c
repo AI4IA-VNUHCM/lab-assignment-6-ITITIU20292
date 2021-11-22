@@ -15,15 +15,57 @@ Ex:
 #include <math.h>
 #include <string.h>
 
-void Ex5(char *str){
+int Ex5(char *str){
 	//Your codes here
-	
+	int size=strlen(str);
+	char buf[size];
+	int i=0;
+   while(*str)
+    {
+        if(*str == '(' || *str == '[' || *str == '{')
+        {
+            buf[i] = *str;
+            i++;
+        }
+        if(*str == ')')
+        {
+            if(buf[i - 1] == '(')
+                i--;
+            else
+                return 0;
+        }
+        if(*str == ']')
+        {
+            if(buf[i - 1] == '[')
+                i--;
+            else
+                return 0;
+        }
+        if(*str == '}')
+        {
+            if(buf[i - 1] == '{')
+                i--;
+            else
+                return 0;
+        }
+        str++;
+    }
+    if(i == 0)
+        return 1;
+    else
+        return 0;
 }
+	
+
 
 int main(int argc, char *argv[]) {
 	//testing variable, applying it to your algorithm for auto-evaluating
 	char *testcase = argv[1];
 
-	Ex5(testcase);
+	if(Ex5(testcase)==1)
+	{
+		printf("Valid");
+	}else
+	printf("Invalid");
 	return 0;
 }
