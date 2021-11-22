@@ -16,21 +16,35 @@ Ex:
 void Ex4(char *str){
 	//Your codes here
 
-	 int  i,k=0;
- 
-	  for(i=0;str[i];i++)
-     {
-      	str[i]=str[i+k];
- 
-     	
-     	if(str[i]==' '|| str[i]=='\t')
-      	{
-	 	  k++;
-	 	  i--;
-	     }
-     	
-    }
-	 printf("%s",str);
+	int len = strlen(str);
+	int count = 0;
+	for (int i = 0; i <= len; i++)
+	{
+
+		if (str[i] != ' ')
+		{
+			break;
+		}
+		count++;
+	}
+	int count1 = 0;
+	for (int j = len - 1; j > 0; j--)
+	{
+
+		if (str[j] != ' ')
+		{
+			break;
+		}
+		count1++;
+	}
+
+	for (int k = count; k < len - count1; k++)
+	{
+		if (!(str[k] == ' ' && str[k + 1] == ' '))
+		{
+			printf("%c", str[k]);
+		}
+	}
 }
 
 

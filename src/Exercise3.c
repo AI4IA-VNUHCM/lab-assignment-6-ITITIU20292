@@ -15,46 +15,37 @@ Ex:
 
 void Ex3(char *str){
 	//Your codes here
-	    int i=0,j=0,k=0,a,minIndex=0,maxIndex=0,max=0,min=0;
-    char substr[100][100]={0},c;
-    while(str[k]!='\0')//for splitting sentence
+	   int i = 0, j = 0, flg = 0;
+	char word[50], mx[50], mn[50], c;
+    str[i - 1] = '\0';
+    for (i = 0; i < strlen(str); i++)
     {
-        j=0;
-        while(str[k]!=' '&&str[k]!='\0')
+        while (i < strlen(str) && str[i] != ' ')
         {
-            substr[i][j]=str[k];
-            k++;
-            j++;
+            word[j++] = str[i++];
         }
-        substr[i][j]='\0';
-        i++;
-        if(str[k]!='\0')
+        if (j != 0)
         {
-            k++;
+            word[j] = '\0';
+            if (!flg)
+            {
+                flg = !flg;
+                strcpy(mx, word);
+                strcpy(mn, word);
+            }
+            if (strlen(word) > strlen(mx))
+            {
+                strcpy(mx, word);
+            }
+            if (strlen(word) < strlen(mn))
+            {
+                strcpy(mn, word);
+            }
+            j = 0;
         }
     }
-    int len=i;
-    max=strlen(substr[0]);
-    min=strlen(substr[0]);
-    for(i=0;i<len;i++)
-    {
-       a=strlen(substr[i]);
-       if(a>max)
-        {
-            max=a;
-            maxIndex=i;
-        }
-        if(a<min)
-        {
-            min=a;
-            minIndex=i;
-        }
-    }
-
-	printf("Shotest word: %s",substr[minIndex]);
-	printf("\nLongest word: %s",substr[maxIndex]);
-
-	
+    printf("Shortest word: %s",mn);
+	printf("\nLongest word: %s",mx);
 }
 
 int main(int argc, char *argv[]) {
